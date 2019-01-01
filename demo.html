@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <meta charset="utf-8">
+        <title>Demonstração - Lightbox por LipESprY</title>
+
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="lightbox/script.js"></script>
+        <link rel="stylesheet" type="text/css" href="lightbox/estilo.css">
+
+        <style>
+            body {
+                height: 2000px;
+            }
+        </style>
+    </head>
+    <body>
+
+        <a href="javascript: void(0);" id="abrirLightbox">Abrir lightbox</a>
+
+        <br>
+
+        <a href="http://localhost/pagina" titulo="LSIApp" id="abrirLightbox2">Abrir lightbox 2</a>
+
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+
+        <div class="lightbox-bg" id="lsi_lightbox">
+            <div class="lightbox">
+                <div class="cabecalho">
+                    <span>Lightbox</span>
+                    <a href="javascript: void(0);" class="lightbox-close"><img src="lightbox/btn-fechar.png"></img></a>
+                </div>
+                <div class="conteudo">
+                </div>
+            </div>
+        </div>
+
+    </body>
+
+<script type="text/javascript">
+    $(function(){
+        $('#abrirLightbox').abreLb({titulo: "Lightbox - por LipESprY", conteudo: 'Lightbox criada por LipESprY'});
+        $('#abrirLightbox2').ajaxLb({});
+    });
+</script>
+
+</html>
