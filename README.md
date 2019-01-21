@@ -30,7 +30,7 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax e com di
 
 - Conteúdo ajax:
 
-[LSI-Lightbox](assets/conteudo_dinamico_com_ajax.png)
+[![LSI-Lightbox](assets/conteudo_dinamico_com_ajax.png)](assets/conteudo_dinamico_com_ajax.png)
 
 ```
 <a href="http://localhost/pagina" titulo="LSIApp" id="abrirLightboxAjax">Abrir lightbox 2</a>
@@ -43,7 +43,7 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax e com di
 
 - Conteúdo estático:
 
-[LSI-Lightbox](assets/conteudo_estatico.png)
+[![LSI-Lightbox](assets/conteudo_estatico.png)](assets/conteudo_estatico.png)
 
 ```
 <a href="javascript: void(0);" id="abrirLightbox">Abrir lightbox</a>
@@ -83,6 +83,9 @@ $('#abrirLightbox2').ajaxLb({
 ```
 
 ## Agradecimentos especiais pelas contribuições de:
+
 Higo Ribeiro <horbjn@gmail.com>;
+
 Sam <https://pt.stackoverflow.com/users/8063/sam>;
+
 hugocsl <https://pt.stackoverflow.com/users/97477/hugocsl>;
