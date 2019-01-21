@@ -1,6 +1,8 @@
 # lsi-lightbox-modal
 Lightbox com opção de exibir conteúdo recebido via requisição ajax e com dimensionamento automático, conforme conteúdo carregado.
 
+## [Veja esta demonstração](https://lipespry.github.io/lsi-lightbox-modal/demo.html)
+
 ## Uso:
 1) Carregar o script e a folha de estilos da Lightbox na raiz do HTML:
 ```
