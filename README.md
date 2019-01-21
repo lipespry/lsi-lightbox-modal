@@ -1,5 +1,5 @@
 # lsi-lightbox-modal
-Lightbox com opção de exibir conteúdo recebido via requisição ajax
+Lightbox com opção de exibir conteúdo recebido via requisição ajax e com dimensionamento automático, conforme conteúdo carregado.
 
 ## Uso:
 1) Carregar o script e a folha de estilos da Lightbox na raiz do HTML:
@@ -12,14 +12,16 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax
 
 ```
 <div class="lightbox-bg" id="lsi_lightbox">
-    <div class="lightbox">
-        <div class="cabecalho">
-            <span>Lightbox</span>
-            <a href="javascript: void(0);" class="lightbox-close"><img src="lightbox/btn-fechar.png"></img></a>
-        </div>
-        <div class="conteudo">
-        </div>
-    </div>
+	<div class="lightbox">
+		<div class="cabecalho">
+			<span>Lightbox - por LipESprY</span>
+			<div class="btn-fechar" id="btn-fechar-lb">
+				<img src="/layout/lightbox/btn-fechar.png"></img>
+			</div>
+		</div>
+		<div class="conteudo">
+		</div>
+	</div>
 </div>
 ```
 ###### Normalmente adiciono a base antes do fechamento da tag `body`;
@@ -27,6 +29,9 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax
 3) Fazer a chamada da lightbox:
 
 - Conteúdo ajax:
+
+[LSI-Lightbox](assets/conteudo_dinamico_com_ajax.png)
+
 ```
 <a href="http://localhost/pagina" titulo="LSIApp" id="abrirLightboxAjax">Abrir lightbox 2</a>
 <script type="text/javascript">
@@ -37,6 +42,9 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax
 ```
 
 - Conteúdo estático:
+
+[LSI-Lightbox](assets/conteudo_estatico.png)
+
 ```
 <a href="javascript: void(0);" id="abrirLightbox">Abrir lightbox</a>
 <script type="text/javascript">
@@ -45,7 +53,6 @@ Lightbox com opção de exibir conteúdo recebido via requisição ajax
     });
 </script>
 ```
-
 
 ## Opções padrões para chamada com conteúdo via ajax:
 
@@ -62,6 +69,7 @@ let opcoesPadrao = {
 ```
 
 Estas opções podem ser sobrescritas na chamada da Lightbox:
+
 ```
 $('#abrirLightbox2').ajaxLb({
 	titulo: 'Título da página carregada',
@@ -73,3 +81,8 @@ $('#abrirLightbox2').ajaxLb({
 	cache: false // Habilita/desabilita o cache da página carregada: true|false	
 });
 ```
+
+## Agradecimentos especiais pelas contribuições de:
+Higo Ribeiro <horbjn@gmail.com>;
+Sam <https://pt.stackoverflow.com/users/8063/sam>;
+hugocsl <https://pt.stackoverflow.com/users/97477/hugocsl>;

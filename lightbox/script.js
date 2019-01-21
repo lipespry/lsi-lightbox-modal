@@ -50,16 +50,23 @@ jQuery.fn.extend({
 
 jQuery.extend({
     toggleLb: function (opcoes) {
+        if (typeof lb_transicao !== 'undefined' && lb_transicao === true)
+            return false;
+        else
         if ($('div.lightbox-bg').is(':visible')) { // Fecha
+            lb_transicao = true;
             $('body').removeClass('lightbox-aberta');
             $('div.lightbox-bg').animate({
                 opacity: 0
             }, 600, function(){
-                $('div.lightbox-bg').toggle();
+                //$('div.lightbox-bg').toggle();
+                $('div.lightbox-bg').css('display', 'none');
                 $('div.lightbox-bg > div.lightbox > div.cabecalho > span')
                     .html('Lightbox - por LipESprY');
+                lb_transicao = false;
             });
         } else { // Abre
+            lb_transicao = true;
             $('div.lightbox-bg > div.lightbox > div.cabecalho > span')
                 .html(
                     (typeof opcoes.titulo === 'string')
@@ -70,21 +77,23 @@ jQuery.extend({
                 $('div.lightbox-bg > div.lightbox > div.conteudo')
                     .html(opcoes.conteudo);
             }
-            $('div.lightbox-bg').toggle();
+            //$('div.lightbox-bg').toggle();
+            $('div.lightbox-bg').css('display', 'flex');
             $('div.lightbox-bg').animate({
                 opacity: 1
             }, 600, function(){
                 $('body').addClass('lightbox-aberta');
+                lb_transicao = false;
             });
         }
     }
 });
 
 $(document).ready(function(){
-    $('.lightbox-close').on('click', function(){
+    $('#btn-fechar-lb').on('click', function(){
         $.toggleLb();
     });
-    $('.lightbox-bg').on('click', function(e){
+    $('#lsi_lightbox').on('click', function(e){
         if (e.target.id == 'lsi_lightbox') {
             $.toggleLb();
         }
