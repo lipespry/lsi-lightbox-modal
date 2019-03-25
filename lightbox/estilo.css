@@ -1,6 +1,3 @@
-body.lightbox-aberta {
-    overflow: hidden;
-}
 div.lightbox-bg {
     position: fixed;
     top: 0;
@@ -15,6 +12,20 @@ div.lightbox-bg {
 
     display: none;
     opacity: 0;
+}
+div.lightbox-bg.aberta {
+    animation: lb_abrir 1s 1 forwards;
+}
+div.lightbox-bg.fechada {
+    /* caso mude o tempo da animação,
+     * altere também o setTimeout no script.js
+     *
+     * setTimeout(function(){
+     *     lb.elem.bg.style.display = 'none';
+     *     lb.escondeLoading();
+     * }, 700); // <<<<<<<<<<<<<<<<<<<<<
+     ************************************************/
+    animation: lb_fechar 1s 1 forwards;
 }
 div.lightbox-bg > div.lightbox {
     max-width: 90%;
@@ -56,4 +67,49 @@ div.lightbox-bg > div.lightbox > div.cabecalho > div.btn-fechar:hover > img {
 }
 div.lightbox-bg > div.lightbox > div.conteudo {
     padding: 10px;
+    max-width: 100%;
+}
+div.lightbox-bg > div.lightbox > div.conteudo * {
+    max-width: 100%;
+    word-wrap: break-word;
+}
+div.lightbox-bg > div.lightbox > div.conteudo pre {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+}
+div.lightbox-bg > div.lightbox > div.conteudo > div.loading {
+    width: 32px;
+    height: 32px;
+    margin: 0 auto;
+    background-image: url('loading.png');
+    background-position: center center;
+    background-size: 28px 28px;
+    background-repeat: no-repeat;
+    animation: lb_loading 2s infinite linear;
+}
+@keyframes lb_abrir {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+@keyframes lb_fechar {
+    0%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0;
+    }
+}
+@keyframes lb_loading {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }

@@ -1,88 +1,92 @@
 # lsi-lightbox-modal
+
 Lightbox com opção de exibir conteúdo recebido via requisição ajax e com dimensionamento automático, conforme conteúdo carregado.
 
-## [Veja esta demonstração](https://lipespry.github.io/lsi-lightbox-modal/demo.html)
+**Agora com JavaScript puro! NÃO necessita jQuery!**
+
+## [Veja a demonstração](https://lipespry.github.io/lsi-lightbox-modal/demo.html)
 
 ## Uso:
+
 1) Carregar o script e a folha de estilos da Lightbox na raiz do HTML:
-```
+
+```html
 <script type="text/javascript" src="lightbox/script.js"></script>
 <link rel="stylesheet" type="text/css" href="lightbox/estilo.css">
 ```
 
-2) Adicionar a base da Lightbox na raiz do HTML:
+2) Fazer a chamada da lightbox:
 
-```
-<div class="lightbox-bg" id="lsi_lightbox">
-	<div class="lightbox">
-		<div class="cabecalho">
-			<span>Lightbox - por LipESprY</span>
-			<div class="btn-fechar" id="btn-fechar-lb">
-				<img src="/layout/lightbox/btn-fechar.png"></img>
-			</div>
-		</div>
-		<div class="conteudo">
-		</div>
-	</div>
-</div>
-```
-###### Normalmente adiciono a base antes do fechamento da tag `body`;
-
-3) Fazer a chamada da lightbox:
-
-- Conteúdo ajax:
+- Página HTML (ajax):
 
 [![LSI-Lightbox](assets/conteudo_dinamico_com_ajax.png)](assets/conteudo_dinamico_com_ajax.png)
 
-```
-<a href="http://localhost/pagina" titulo="LSIApp" id="abrirLightboxAjax">Abrir lightbox 2</a>
-<script type="text/javascript">
-    $(function(){
-        $('#abrirLightboxAjax').ajaxLb({});
+```html
+<a href="javascript: void(0);" id="lb_html">Conteúdo dinâmico via ajax [página HTML];</a>
+<script>
+    LSILightbox().addGatilho({
+        alvo: document.getElementById('lb_html'),
+        titulo: 'Lightbox - por LipESprY [url HTML]',
+        conteudo: 'Este não vai aparecer porque é página HTML',
+        url: 'demo-conteudo.html',
+        metodo: 'GET',
+        dados: "nome=LipESprY&email=felipemdeoliveira%40live.com",
+        headers: {
+            "LSIAPP-by-LipESprY":"LipESprY Lightbox!"
+        }
     });
 </script>
 ```
 
-- Conteúdo estático:
+- Texto estático (aceita tags HTML):
 
 [![LSI-Lightbox](assets/conteudo_estatico.png)](assets/conteudo_estatico.png)
 
-```
-<a href="javascript: void(0);" id="abrirLightbox">Abrir lightbox</a>
-<script type="text/javascript">
-    $(function(){
-        $('#abrirLightbox').abreLb({titulo: "Lightbox - por LipESprY", conteudo: 'Lightbox criada por LipESprY'});
+```html
+<a href="javascript: alert(0);" id="lb_estatico">Conteúdo estático [texto];</a>
+<script>
+    LSILightbox().addGatilho({
+        alvo: document.getElementById('lb_estatico'),
+        titulo: 'Lightbox - por LipESprY [texto+html]',
+        conteudo: (
+            'Lorem ipsum dolor sit amet, consectetur adipisicing'
+            +' elit. <b>Veritatis alias iure repellat</b> vel dolore enim'
+            +' pariatur eos amet sequi provident doloremque ipsa maxime'
+            +' <i>porro autem accusantium</i>, nulla commodi,'
+            +' minima architecto.'
+        )
     });
 </script>
 ```
 
-## Opções padrões para chamada com conteúdo via ajax:
+## Opções para chamada da LightBox:
 
-```
-let opcoesPadrao = {
-    titulo: $(this).attr('titulo'),
-    conteudo: 'Carregando...',
-    url: $(this).attr('href'),
-    method: $(this).attr('method'),
-    data: $(this).attr('data'),
-    dataType: 'html',
-    cache: false
+Opções disponíveis na chamada da Lightbox.
+
+```javascript
+var opcoes = {
+    // elemento clicável para abrir a lightbox
+    alvo: document.getElementById('id_do_elemento'),
+    // título
+    titulo: "LSILightbox", // padrão: 'LSILightbox'
+    // texto [não aparece em caso de página html (ajax)]
+    conteudo: "Criado por LipESprY", // padrão: 'Criado por LipESprY'
+    // página html (ajax)
+    url: "http://minhapagina.com.br",
+    // método http
+    metodo: "get", // padrão: 'get'
+    // dados - deve ser string no formato urlencode ou null.
+    dados: "nome=LipESprY&email=felipemdeoliveira%40live.com", // padrão: null
+    // se true, habilita cache da página html
+    cache: false, // padrão: false
+    // cabeçalhos http
+    headers: {
+        "LSILightbox":"por LipESprY"
+    }
 }
 ```
 
-Estas opções podem ser sobrescritas na chamada da Lightbox:
-
-```
-$('#abrirLightbox2').ajaxLb({
-	titulo: 'Título da página carregada',
-	conteudo: 'Conteúdo mostrado antes de carregar o ajax',
-	url: 'http://url.carregado.via.ajax/uri',
-	method: 'get', // método da requisição ajax: get|post|put|delete|etc
-	data: $('#meuFormulario').serialize(), // Serializa os dados do formulário
-	dataType: 'html', // Se for retornar outro tipo de dados pode não renderizar como esperado
-	cache: false // Habilita/desabilita o cache da página carregada: true|false	
-});
-```
+## [Licença: MIT](https://github.com/lipespry/lsi-lightbox-modal/blob/master/LICENSE)
 
 ## Agradecimentos especiais pelas contribuições de:
 

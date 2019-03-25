@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt_br">
     <head>
-
         <meta charset="utf-8">
-        <title>Demonstração - Lightbox por LipESprY</title>
 
-        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <title>Demonstração - Lightbox 2.0 por LipESprY</title>
+
         <script type="text/javascript" src="lightbox/script.js"></script>
+
         <link rel="stylesheet" type="text/css" href="lightbox/estilo.css">
 
         <style>
@@ -16,20 +16,19 @@
         </style>
     </head>
     <body>
-
-        <a href="javascript: void(0);" id="abrirLightbox">Conteúdo estático;</a>
-
+        <a href="javascript: void(0);" id="lb_html">Conteúdo dinâmico via ajax [url HTML];</a>
         <br>
-
-        <a href="demo-conteudo.html" titulo="LSIApp" id="abrirLightbox2">Conteúdo dinâmico via ajax;</a>
+        <br>
+        <a href="javascript: alert(0);" id="lb_estatico">Conteúdo estático [texto+html];</a>
 
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            Lorem ipsum dolor sit amet, consectetur
+            adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore
+            magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco
+            laboris nisi ut aliquip ex ea commodo
+            consequat.
         </p>
 
         <div class="lightbox-bg" id="lsi_lightbox">
@@ -47,11 +46,30 @@
 
     </body>
 
-<script type="text/javascript">
-    $(function(){
-        $('#abrirLightbox').abreLb({titulo: "Lightbox - por LipESprY", conteudo: 'Lightbox criada por LipESprY'});
-        $('#abrirLightbox2').ajaxLb({});
-    });
-</script>
+    <script>
+        LSILightbox().addGatilho({
+            alvo: document.getElementById('lb_html'),
+            titulo: 'Lightbox - por LipESprY [url HTML]',
+            conteudo: 'Este não vai aparecer porque é página HTML',
+            url: 'demo-conteudo.html',
+            metodo: 'GET',
+            dados: "nome=LipESprY&email=felipemdeoliveira%40live.com",
+            headers: {
+                "LSIAPP-by-LipESprY":"LipESprY Lightbox!"
+            }
+        });
+
+        LSILightbox().addGatilho({
+            alvo: document.getElementById('lb_estatico'),
+            titulo: 'Lightbox - por LipESprY [texto+html]',
+            conteudo: (
+                'Lorem ipsum dolor sit amet, consectetur adipisicing'
+                +' elit. <b>Veritatis alias iure repellat</b> vel dolore enim'
+                +' pariatur eos amet sequi provident doloremque ipsa maxime'
+                +' <i>porro autem accusantium</i>, nulla commodi,'
+                +' minima architecto.'
+            )
+        });
+    </script>
 
 </html>
