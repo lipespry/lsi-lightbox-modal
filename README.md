@@ -66,23 +66,34 @@ Opções disponíveis na chamada da Lightbox.
 ```javascript
 var opcoes = {
     // elemento clicável para abrir a lightbox
+    // opção requerida - sem alvo padrão
     alvo: document.getElementById('id_do_elemento'),
     // título
-    titulo: "LSILightbox", // padrão: 'LSILightbox'
+    // padrão: 'LSILightbox'
+    titulo: "LSILightbox",
     // texto [não aparece em caso de página html (ajax)]
-    conteudo: "Criado por LipESprY", // padrão: 'Criado por LipESprY'
+    // padrão: 'Criado por LipESprY'
+    conteudo: "Criado por LipESprY",
     // página html (ajax)
     url: "http://minhapagina.com.br",
     // método http
-    metodo: "get", // padrão: 'get'
+    // padrão: 'get'
+    metodo: "get",
     // dados - deve ser string no formato urlencode ou null.
-    dados: "nome=LipESprY&email=felipemdeoliveira%40live.com", // padrão: null
+    // padrão: null
+    dados: "nome=LipESprY&email=felipemdeoliveira%40live.com",
     // se true, habilita cache da página html
-    cache: false, // padrão: false
+    // padrão: false
+    cache: false,
     // cabeçalhos http
     headers: {
         "LSILightbox":"por LipESprY"
-    }
+    },
+    // executar os scripts carregados no corpo da lightbox?
+    // ex.: <script>alert('vai executar?');</script>
+    // ou: <script src="meuscript.js"></script>
+    // padrão: true
+    script: true
 }
 ```
 

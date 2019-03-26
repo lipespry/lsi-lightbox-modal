@@ -97,7 +97,8 @@ var LSILightbox = (function(){
                 conteudo: 'Criado por LipESprY',
                 metodo: 'get',
                 dados: null,
-                cache: false
+                cache: false,
+                script: true
             }
 
             for (let opcao in userData) {
@@ -187,6 +188,8 @@ var LSILightbox = (function(){
                     if (ajax.status >= 200 && ajax.status < 400) {
                         lb.escondeLoading();
                         lb.elem.conteudo.innerHTML = ajax.responseText;
+                        if (opcoes.script === true)
+                            lb.execScripts();
                     } else {
                         lb.escondeLoading();
                         lb.elem.conteudo.innerHTML = ajax.responseText;
@@ -232,8 +235,12 @@ var LSILightbox = (function(){
                 lb.elem.conteudo.appendChild(lb.elem.loading);
 
                 lb.ajax(opcoes);
-            } else
+            } else {
                 lb.elem.conteudo.innerHTML = opcoes.conteudo;
+                if (opcoes.script === true)
+                    lb.execScripts();
+
+            }
 
             lb.elem.bg.style.display = 'flex';
             if (lb.elem.bg.classList.contains('fechada'))
@@ -252,6 +259,24 @@ var LSILightbox = (function(){
                 lb.elem.bg.style.display = 'none';
                 lb.escondeLoading();
             }, 700); // tempo [pouco menor] da animação CSS ao fechar
+        }
+
+        this.execScripts = function()
+        {
+            let scripts = lb.elem.conteudo.getElementsByTagName('script');
+            for (let script of scripts) {
+                if (script.getAttribute('src') !== null) {
+                    let novoScript = document.createElement('script');
+                    novoScript.setAttribute(
+                        'src',
+                        script.getAttribute('src')
+                    );
+                    script.parentNode.insertBefore(novoScript, script);
+                    script.parentNode.removeChild(script);
+                } else
+                    eval(script.innerHTML);
+            }
+            scripts = undefined;
         }
 
         return lb;
